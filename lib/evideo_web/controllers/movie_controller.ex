@@ -1,4 +1,3 @@
-
 defmodule EvideoWeb.MovieController do
   use EvideoWeb, :controller
 
@@ -6,20 +5,21 @@ defmodule EvideoWeb.MovieController do
 
   alias Evideo.Movies
 
-
   def get_all(conn, _params) do
-    movies = Movies.list_movies() |> Enum.map(fn movie ->
-      %{
-        id: movie.id,
-        title: movie.title,
-        year: movie.year,
-        description: movie.description,
-        length: movie.length,
-        daily_price: movie.daily_price,
-        obselete: movie.obselete
+    movies =
+      Movies.list_movies()
+      |> Enum.map(fn movie ->
+        %{
+          id: movie.id,
+          title: movie.title,
+          year: movie.year,
+          description: movie.description,
+          length: movie.length,
+          daily_price: movie.daily_price,
+          obselete: movie.obselete
+        }
+      end)
 
-      }
-    end)
     Logger.info("movies #{inspect(movies)}")
 
     conn
@@ -31,43 +31,42 @@ defmodule EvideoWeb.MovieController do
     Logger.info("creating movie with params #{inspect(params)}")
 
     {:ok, movie} = Movies.create_movie(params)
+
     conn
     |> put_status(:created)
-    |> json(
-      %{
-        id: movie.id,
-        title: movie.title,
-        year: movie.year,
-        description: movie.description,
-        length: movie.length,
-        daily_price: movie.daily_price,
-        obselete: movie.obselete
-      }
-    )
+    |> json(%{
+      id: movie.id,
+      title: movie.title,
+      year: movie.year,
+      description: movie.description,
+      length: movie.length,
+      daily_price: movie.daily_price,
+      obselete: movie.obselete
+    })
   end
 
   def update(conn, %{"id" => id} = params) do
     Logger.info("Updating movier with params #{inspect(params)}")
 
     {:ok, movie} = Movies.update_movie(id, params)
+
     conn
     |> put_status(:ok)
-    |> json(
-      %{
-        id: movie.id,
-        title: movie.title,
-        year: movie.year,
-        description: movie.description,
-        length: movie.length,
-        daily_price: movie.daily_price,
-        obselete: movie.obselete
-      }
-    )
+    |> json(%{
+      id: movie.id,
+      title: movie.title,
+      year: movie.year,
+      description: movie.description,
+      length: movie.length,
+      daily_price: movie.daily_price,
+      obselete: movie.obselete
+    })
   end
 
   def delete(conn, %{"id" => id} = params) do
     Logger.info("Delete movie with params #{inspect(params)}")
     {:ok, movie} = Movies.delete_movie(id)
+
     conn
     |> put_status(:ok)
     |> json(%{

@@ -29,9 +29,10 @@ defmodule Evideo.Movies do
   end
 
   def delete_movie(id) do
-    Repo.get!(Movie, id) |> Repo.delete!
+    Repo.get!(Movie, id) |> Repo.delete!()
   end
-  #genre
+
+  # genre
   def create_genre(attrs) do
     %Movie{}
     |> Movie.changeset(attrs)
@@ -59,8 +60,6 @@ defmodule Evideo.Movies do
   end
 
   def delete_genre(id) do
-    Repo.get!(Movie, id) |> Repo.delete!
+    Repo.get!(Movie, id) |> Repo.delete!()
   end
-
-
 end

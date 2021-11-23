@@ -30,8 +30,13 @@ defmodule EvideoWeb.Router do
 
     get "/movies", MovieController, :get_all
     post "/movies/", MovieController, :create
-    put "/moviess/:id", MovieController, :update
+    put "/movies/:id", MovieController, :update
     delete "/movies/:id", MovieController, :delete
+
+    get "/countries", CountryController, :get_all
+    post "/countries/", CountryController, :create
+    put "/countries/:id", CountryController, :update
+    delete "/countries/:id", CountryController, :delete
   end
 
   # Enables LiveDashboard only for development
