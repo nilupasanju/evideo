@@ -12,7 +12,11 @@ defmodule EvideoWeb.CustomerController do
         %{
           id: customer.id,
           email: customer.email,
-          name: customer.name
+          name: customer.name,
+          phone: customer.phone,
+          no_of_rented_copies: customer.no_of_rented_copies,
+          username: customer.username,
+          customer_password: customer.customer_password
         }
       end)
 
@@ -33,7 +37,11 @@ defmodule EvideoWeb.CustomerController do
     |> json(%{
       id: customer.id,
       email: customer.email,
-      name: customer.name
+      name: customer.name,
+      phone: customer.phone,
+      no_of_rented_copies: customer.no_of_rented_copies,
+      username: customer.username,
+      customer_password: customer.customer_password
     })
   end
 
@@ -47,7 +55,11 @@ defmodule EvideoWeb.CustomerController do
     |> json(%{
       id: customer.id,
       email: customer.email,
-      name: customer.name
+      name: customer.name,
+      phone: customer.phone,
+      no_of_rented_copies: customer.no_of_rented_copies,
+      username: customer.username,
+      customer_password: customer.customer_password
     })
   end
 
