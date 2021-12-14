@@ -37,6 +37,11 @@ defmodule EvideoWeb.Router do
     post "/countries/", CountryController, :create
     put "/countries/:id", CountryController, :update
     delete "/countries/:id", CountryController, :delete
+
+    get "/states", StateController, :get_all
+    post "/states/", StateController, :create
+    put "/states/:id", StateController, :update
+    delete "/states/:id", StateController, :delete
   end
 
   # Enables LiveDashboard only for development

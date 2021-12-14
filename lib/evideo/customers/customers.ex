@@ -2,6 +2,7 @@ defmodule Evideo.Customers do
   alias Evideo.Repo
   alias Evideo.Customers.Customer
   alias Evideo.Customers.Country
+  alias Evideo.Customers.State
 
   def create_customer(attrs) do
     %Customer{}
@@ -63,4 +64,36 @@ defmodule Evideo.Customers do
   def delete_country(id) do
     Repo.get!(Country, id) |> Repo.delete!()
   end
+
+  #State
+  def create_state(attrs) do
+    %State{}
+    |> Country.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def get_state(id) do
+    Repo.get(State, id)
+  end
+
+  def update_state(id, attrs) do
+    case get_state(id) do
+      nil ->
+        {:error, :not_found}
+
+      customer ->
+        customer
+        |> State.changeset(attrs)
+        |> Repo.update()
+    end
+  end
+
+  def list_states() do
+    Repo.all(State)
+  end
+
+  def delete_state(id) do
+    Repo.get!(State, id) |> Repo.delete!()
+  end
+
 end

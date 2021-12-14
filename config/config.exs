@@ -50,21 +50,3 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
-
-rules: [
-  {
-    test: /\.(j|t)s$/,
-    exclude: /node_modules/,
-    use: [
-      {
-        loader: "babel-loader"
-      },
-      {
-        loader: "ts-loader"
-      }
-    ]
-  },
-
-  resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"]
-  },
