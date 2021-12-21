@@ -68,7 +68,7 @@ defmodule Evideo.Customers do
   #State
   def create_state(attrs) do
     %State{}
-    |> Country.changeset(attrs)
+    |> State.changeset(attrs)
     |> Repo.insert()
   end
 
