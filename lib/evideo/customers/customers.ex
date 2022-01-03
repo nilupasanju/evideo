@@ -3,6 +3,7 @@ defmodule Evideo.Customers do
   alias Evideo.Customers.Customer
   alias Evideo.Customers.Country
   alias Evideo.Customers.State
+  alias Evideo.Customers.Enquiry
 
   def create_customer(attrs) do
     %Customer{}
@@ -65,7 +66,7 @@ defmodule Evideo.Customers do
     Repo.get!(Country, id) |> Repo.delete!()
   end
 
-  #State
+  # State
   def create_state(attrs) do
     %State{}
     |> State.changeset(attrs)
@@ -96,4 +97,14 @@ defmodule Evideo.Customers do
     Repo.get!(State, id) |> Repo.delete!()
   end
 
+  # Enquiry
+  def create_enquiry(attrs) do
+    %Enquiry{}
+    |> Enquiry.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def list_enquiry() do
+    Repo.all(Enquiry)
+  end
 end

@@ -43,6 +43,9 @@ defmodule EvideoWeb.Router do
     post "/states/", StateController, :create
     put "/states/:id", StateController, :update
     delete "/states/:id", StateController, :delete
+
+    get "/enquiry", EnquiryController, :get_all
+    post "/enquiry/", EnquiryController, :create
   end
 
   # Enables LiveDashboard only for development
