@@ -47,10 +47,10 @@ defmodule EvideoWeb.Router do
     get "/enquiry", EnquiryController, :get_all
     post "/enquiry/", EnquiryController, :create
 
-    get "/staffs", StaffController, :get_all
-    post "/staffs/", StaffController, :create
-    put "/staffs/:id", StaffController, :update
-    delete "/staffs/:id", StaffController, :delete
+    get "/loginstaffs", LoginStaffController, :get_all
+    post "/loginstaffs/", LoginStaffController, :create
+    put "/loginstaffs/:id", LoginStaffController, :update
+    delete "/loginstaffs/:id", LoginStaffController, :delete
   end
 
   # Enables LiveDashboard only for development

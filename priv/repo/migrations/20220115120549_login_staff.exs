@@ -8,6 +8,7 @@ defmodule Evideo.Repo.Migrations.LoginStaff do
       add :username, :string, size: 50
       add :loginpassword, :string, size: 8
     end
+
     create unique_index(:login_staff, [:username])
   end
 end
