@@ -3,11 +3,11 @@ defmodule EvideoWeb.LoginStaffController do
 
   require Logger
 
-  alias Evideo.Staffs
+  alias Evideo.Staffs.LoginStaffs
 
   def get_all(conn, _params) do
     login_staffs =
-      Staffs.list_login_staffs()
+      LoginStaffs.list_login_staffs()
       |> Enum.map(fn login_staff ->
         %{
           id: login_staff.id,
@@ -26,7 +26,7 @@ defmodule EvideoWeb.LoginStaffController do
   def create(conn, params) do
     Logger.info("creating staffs with params #{inspect(params)}")
 
-    {:ok, login_staff} = Staffs.create_login_staff(params)
+    {:ok, login_staff} = LoginStaffs.create_login_staff(params)
 
     conn
     |> put_status(:created)
@@ -42,7 +42,7 @@ defmodule EvideoWeb.LoginStaffController do
   def update(conn, %{"id" => id} = params) do
     Logger.info("Updating staff with params #{inspect(params)}")
 
-    {:ok, login_staff} = Staffs.update_login_staff(id, params)
+    {:ok, login_staff} = LoginStaffs.update_login_staff(id, params)
 
     conn
     |> put_status(:ok)
@@ -57,7 +57,7 @@ defmodule EvideoWeb.LoginStaffController do
 
   def delete(conn, %{"id" => id} = params) do
     Logger.info("Delete staff with params #{inspect(params)}")
-    {:ok, login_staff} = Staffs.delete_login_staff(id)
+    {:ok, login_staff} = LoginStaffs.delete_login_staff(id)
 
     conn
     |> put_status(:ok)
@@ -67,7 +67,7 @@ defmodule EvideoWeb.LoginStaffController do
   end
 
   def get(conn, %{"id" => id} = params) do
-    {:ok, login_staff} = Staffs.get_login_staff(id)
+    {:ok, login_staff} = LoginStaffs.get_login_staff(id)
     Logger.info("Staff #{inspect(params)}")
 
     conn
