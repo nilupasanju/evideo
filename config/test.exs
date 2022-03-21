@@ -6,9 +6,9 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :evideo, Evideo.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "evideo_test#{System.get_env("MIX_TEST_PARTITION")}",
+  username: "nilu",
+  password: "",
+  database: "evideo_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10

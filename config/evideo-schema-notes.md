@@ -164,7 +164,7 @@ def change do
       add :username, :string, size: 50
       add :loginpassword, :string, size: 8
     end
-    create unique_index(:login_staff, [:loginpassword])
+    create unique_index(:login_staff, [:username])
 end
 mix ecto.migrate
 
