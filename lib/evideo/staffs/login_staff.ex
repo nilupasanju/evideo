@@ -7,8 +7,6 @@ defmodule Evideo.Staffs.LoginStaff do
     field :last_name, :string, size: 50
     field :username, :string, size: 50
     field :loginpassword, :string, size: 8
-
-
   end
 
   @doc false

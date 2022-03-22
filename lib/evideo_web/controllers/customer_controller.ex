@@ -22,6 +22,8 @@ defmodule EvideoWeb.CustomerController do
 
     Logger.info("customers #{inspect(customers)}")
 
+    IO.puts("#{customers}")
+
     conn
     |> put_status(:ok)
     |> json(customers)
@@ -48,19 +50,25 @@ defmodule EvideoWeb.CustomerController do
   def update(conn, %{"id" => id} = params) do
     Logger.info("Updating customer with params #{inspect(params)}")
 
-    {:ok, customer} = Customers.update_customer(id, params)
+    case Customers.update_customer(id, params) do
+      {:ok, customer} ->
+        conn
+        |> put_status(:ok)
+        |> json(%{
+          id: customer.id,
+          email: customer.email,
+          name: customer.name,
+          phone: customer.phone,
+          no_of_rented_copies: customer.no_of_rented_copies,
+          username: customer.username,
+          customer_password: customer.customer_password
+        })
 
-    conn
-    |> put_status(:ok)
-    |> json(%{
-      id: customer.id,
-      email: customer.email,
-      name: customer.name,
-      phone: customer.phone,
-      no_of_rented_copies: customer.no_of_rented_copies,
-      username: customer.username,
-      customer_password: customer.customer_password
-    })
+      {:error, :not_found} ->
+        conn
+        |> put_status(:not_found)
+        |> json(%{})
+    end
   end
 
   def delete(conn, %{"id" => id} = params) do
