@@ -168,17 +168,13 @@ def change do
 end
 mix ecto.migrate
 
-CREATE TABLE IF NOT EXISTS LoginStaff(
-    login_id INT not null primary key AUTO_INCREMENT,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    username NVARCHAR(50) UNIQUE,
-    loginpassword NVARCHAR(8),
-
-    UNIQUE (loginpassword)
-);
-
-
+mix ecto.gen.migration roles
+def change do
+    create table(:roles) do
+      add :roles_description, :string, size: 50
+    end
+end
+mix ecto.migrate
 
 CREATE TABLE IF NOT EXISTS Roles (
     role_id INT not null primary key,

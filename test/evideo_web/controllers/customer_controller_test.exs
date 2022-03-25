@@ -23,40 +23,58 @@ defmodule EvideoWeb.CustomerControllerTest do
     username: "username",
     password: "password"
   }
+  describe "create" do
+    test "Create customer", %{conn: conn} do
+      conn = post(conn, "/api/customers", @params)
 
-  test "Create customer", %{conn: conn} do
-    conn = post(conn, "/api/customers", @params)
-
-    assert %{
-             "customer_password" => nil,
-             "email" => "user@example.com",
-             "id" => _,
-             "name" => "abc",
-             "no_of_rented_copies" => 1,
-             "phone" => 912_232_432,
-             "username" => "username"
-           } = json_response(conn, 201)
+      assert %{
+               "customer_password" => nil,
+               "email" => "user@example.com",
+               "id" => _,
+               "name" => "abc",
+               "no_of_rented_copies" => 1,
+               "phone" => 912_232_432,
+               "username" => "username"
+             } = json_response(conn, 201)
+    end
   end
 
-  test "Update customer not found", %{conn: conn} do
-    conn = put(conn, "/api/customers/1", @params)
+  describe "update" do
+    test "Update customer not found", %{conn: conn} do
+      conn = put(conn, "/api/customers/0", @params)
 
-    assert %{
-             "customer_password" => nil,
-             "email" => "user@example.com",
-             "id" => _,
-             "name" => "abc",
-             "no_of_rented_copies" => 1,
-             "phone" => 912_232_432,
-             "username" => "username"
-           } = json_response(conn, 200)
+      assert %{} = json_response(conn, 404)
+    end
+
+    test "Update Success", %{conn: conn} do
+      {ok, customer} = fixture()
+      conn = put(conn, "/api/customers/#{customer.id}")
+
+      assert json_response(conn, 200)
+    end
   end
 
-  test "Get all customers", %{conn: conn} do
-    conn = get(conn, "/api/customers")
+  describe "get" do
+    test "Get all customers", %{conn: conn} do
+      conn = get(conn, "/api/customers")
 
-    IO.puts("list:- #{inspect(conn)}")
+      IO.puts("list:- #{inspect(conn)}")
 
-    assert [] = json_response(conn, 200)
+      assert [] = json_response(conn, 200)
+    end
+  end
+
+  describe "delete" do
+    test "delete customer ", %{conn: conn} do
+      {ok, customer} = fixture()
+      conn = delete(conn, "/api/customers/#{customer.id}")
+
+      assert json_response(conn, 200)
+    end
+
+  end
+
+  defp fixture() do
+    Evideo.Customers.create_customer(@params)
   end
 end
