@@ -7,8 +7,8 @@ defmodule Evideo.Staffs.Roles do
   end
 
   @doc false
-  def changeset(login_staff, attrs) do
-    login_staff
+  def changeset(roles, attrs) do
+    roles
     |> cast(attrs, [:roles_description])
   end
 end

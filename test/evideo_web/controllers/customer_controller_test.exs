@@ -71,7 +71,6 @@ defmodule EvideoWeb.CustomerControllerTest do
 
       assert json_response(conn, 200)
     end
-
   end
 
   defp fixture() do

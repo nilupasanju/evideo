@@ -51,6 +51,11 @@ defmodule EvideoWeb.Router do
     post "/loginstaffs/", LoginStaffController, :create
     put "/loginstaffs/:id", LoginStaffController, :update
     delete "/loginstaffs/:id", LoginStaffController, :delete
+
+    get "/roles", RolesController, :get_all
+    post "/roles/", RolesController, :create
+    put "/roless/:id", RolesController, :update
+    delete "/roles/:id", RolesController, :delete
   end
 
   # Enables LiveDashboard only for development
