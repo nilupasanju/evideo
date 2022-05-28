@@ -24,7 +24,8 @@ defmodule EvideoWeb.Router do
     pipe_through :api
 
     get "/customers", CustomerController, :get_all
-    post "/customers/", CustomerController, :create
+    get "/customers/:id", CustomerController, :get
+    post "/customers", CustomerController, :create
     put "/customers/:id", CustomerController, :update
     delete "/customers/:id", CustomerController, :delete
 
@@ -48,6 +49,7 @@ defmodule EvideoWeb.Router do
     post "/enquiry/", EnquiryController, :create
 
     get "/loginstaffs", LoginStaffController, :get_all
+    get "/loginstaffs/:id", LoginStaffController, :get
     post "/loginstaffs/", LoginStaffController, :create
     put "/loginstaffs/:id", LoginStaffController, :update
     delete "/loginstaffs/:id", LoginStaffController, :delete
@@ -56,6 +58,12 @@ defmodule EvideoWeb.Router do
     post "/roles/", RolesController, :create
     put "/roless/:id", RolesController, :update
     delete "/roles/:id", RolesController, :delete
+
+    get "/staff", StaffController, :get_all
+    get "/staff/:id", StaffController, :get
+    post "/staff/", StaffController, :create
+    put "/staff/:id", StaffController, :update
+    delete "/staff/:id", StaffController, :delete
   end
 
   # Enables LiveDashboard only for development

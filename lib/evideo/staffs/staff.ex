@@ -16,7 +16,6 @@ defmodule Evideo.Staffs.Staff do
 
   @doc false
   def changeset(staff, attrs) do
-   staff
-    |> cast(attrs, [:login_id, :phone, :email, :gender, :wage])
+    cast(staff, attrs, [:login_id, :phone, :email, :gender, :wage])
   end
 end

@@ -7,6 +7,7 @@ defmodule EvideoWeb.RolesController do
 
   def get_all(conn, _params) do
     roles = LoginStaffs.list_roles()
+
     Enum.map(roles, fn role ->
       %{
         id: role.id,
@@ -14,8 +15,8 @@ defmodule EvideoWeb.RolesController do
       }
     end)
 
-   # Roles =
-   #   LoginStaffs.list_roles()
+    # Roles =
+    #   LoginStaffs.list_roles()
     #  |> Enum.map(fn role ->
     #    %{
     #      id: role.id,
