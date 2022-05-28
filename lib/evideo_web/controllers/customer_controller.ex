@@ -29,6 +29,22 @@ defmodule EvideoWeb.CustomerController do
     |> json(customers)
   end
 
+  def get(conn, %{"id" => id} = params) do
+    {:ok, customer} = Customers.get_customer(id)
+    Logger.info("State #{inspect(params)}")
+
+    conn
+    |> put_status(:ok)
+    |> json(%{
+      email: customer.email,
+      name: customer.name,
+      phone: customer.phone,
+      no_of_rented_copies: customer.no_of_rented_copies,
+      username: customer.username,
+      customer_password: customer.customer_password
+    })
+  end
+
   def create(conn, params) do
     Logger.info("creating customer with params #{inspect(params)}")
 
