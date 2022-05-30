@@ -5,6 +5,7 @@ defmodule Evideo.Staffs do
   alias Evideo.Staffs.Roles
   alias Evideo.Staffs.Staff
 
+  # LoginStaff
   def create_login_staff(attrs) do
     %LoginStaff{}
     |> LoginStaff.changeset(attrs)
@@ -66,7 +67,7 @@ defmodule Evideo.Staffs do
     Repo.get!(Roles, id) |> Repo.delete!()
   end
 
-  #Staff
+  # Staff
   def create_staff(attrs) do
     %Staff{}
     |> Staff.changeset(attrs)
