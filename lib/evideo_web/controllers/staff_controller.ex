@@ -27,8 +27,6 @@ defmodule EvideoWeb.StaffController do
   end
 
   def create(conn, params) do
-    Logger.info("creating staffs with params #{inspect(params)}")
-
     {:ok, staff} = Staffs.create_staff(params)
 
     conn
@@ -44,8 +42,6 @@ defmodule EvideoWeb.StaffController do
   end
 
   def update(conn, %{"id" => id} = params) do
-    Logger.info("Updating staff with params #{inspect(params)}")
-
     {:ok, staff} = Staffs.update_staff(id, params)
 
     conn
@@ -61,8 +57,7 @@ defmodule EvideoWeb.StaffController do
   end
 
   def delete(conn, %{"id" => id} = params) do
-    Logger.info("Delete staff with params #{inspect(params)}")
-   staff = Staffs.delete_staff(id)
+    staff = Staffs.delete_staff(id)
 
     conn
     |> put_status(:ok)
