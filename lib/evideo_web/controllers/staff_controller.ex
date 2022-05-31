@@ -6,8 +6,8 @@ defmodule EvideoWeb.StaffController do
   alias Evideo.Staffs
 
   def get_all(conn, _params) do
-    staff =
-      Staffs.staff()
+    staffs =
+      Staffs.list_staff()
       |> Enum.map(fn staff ->
         %{
           id: staff.id,
@@ -19,11 +19,11 @@ defmodule EvideoWeb.StaffController do
         }
       end)
 
-    Logger.info("Staffs #{inspect(staff)}")
+    Logger.info("Staffs #{inspect(staffs)}")
 
     conn
     |> put_status(:ok)
-    |> json(staff)
+    |> json(staffs)
   end
 
   def create(conn, params) do
@@ -46,7 +46,7 @@ defmodule EvideoWeb.StaffController do
   def update(conn, %{"id" => id} = params) do
     Logger.info("Updating staff with params #{inspect(params)}")
 
-    {:ok, staff} = LoginStaffs.update_staff(id, params)
+    {:ok, staff} = Staffs.update_staff(id, params)
 
     conn
     |> put_status(:ok)
@@ -62,7 +62,7 @@ defmodule EvideoWeb.StaffController do
 
   def delete(conn, %{"id" => id} = params) do
     Logger.info("Delete staff with params #{inspect(params)}")
-    {:ok, staff} = Staffs.delete_staff(id)
+   staff = Staffs.delete_staff(id)
 
     conn
     |> put_status(:ok)
