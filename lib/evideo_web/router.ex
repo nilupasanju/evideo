@@ -55,8 +55,9 @@ defmodule EvideoWeb.Router do
     delete "/loginstaffs/:id", LoginStaffController, :delete
 
     get "/roles", RolesController, :get_all
+    get "/roles/:id", RolesController, :get
     post "/roles/", RolesController, :create
-    put "/roless/:id", RolesController, :update
+    put "/roles/:id", RolesController, :update
     delete "/roles/:id", RolesController, :delete
 
     get "/staff", StaffController, :get_all
