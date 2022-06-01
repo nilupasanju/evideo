@@ -3,26 +3,17 @@ defmodule EvideoWeb.RolesController do
 
   require Logger
 
-  alias Evideo.LoginStaffs
+  alias Evideo.Staffs
 
   def get_all(conn, _params) do
-    roles = LoginStaffs.list_roles()
-
-    Enum.map(roles, fn role ->
-      %{
-        id: role.id,
-        roles_description: role.roles_description
-      }
-    end)
-
-    # Roles =
-    #   LoginStaffs.list_roles()
-    #  |> Enum.map(fn role ->
-    #    %{
-    #      id: role.id,
-    #      roles_description: roles.roles_description
-    #    }
-    #  end)
+    roles =
+      Staffs.list_roles()
+      |> Enum.map(fn role ->
+        %{
+          id: role.id,
+          roles_description: role.roles_description
+        }
+      end)
 
     Logger.info("roles #{inspect(roles)}")
 
@@ -31,10 +22,21 @@ defmodule EvideoWeb.RolesController do
     |> json(roles)
   end
 
+  def get(conn, %{"id" => id} = params) do
+    role = Staffs.get_role(id)
+
+    conn
+    |> put_status(:ok)
+    |> json(%{
+      id: role.id,
+      roles_description: role.roles_description
+    })
+  end
+
   def create(conn, params) do
     Logger.info("creating role with params #{inspect(params)}")
 
-    {:ok, role} = LoginStaffs.create_role(params)
+    {:ok, role} = Staffs.create_role(params)
 
     conn
     |> put_status(:created)
@@ -47,7 +49,7 @@ defmodule EvideoWeb.RolesController do
   def update(conn, %{"id" => id} = params) do
     Logger.info("Updating role with params #{inspect(params)}")
 
-    {:ok, role} = LoginStaffs.update_role(id, params)
+    {:ok, role} = Staffs.update_role(id, params)
 
     conn
     |> put_status(:ok)
@@ -59,7 +61,7 @@ defmodule EvideoWeb.RolesController do
 
   def delete(conn, %{"id" => id} = params) do
     Logger.info("Delete role with params #{inspect(params)}")
-    {:ok, role} = LoginStaffs.delete_role(id)
+    role = Staffs.delete_role(id)
 
     conn
     |> put_status(:ok)
