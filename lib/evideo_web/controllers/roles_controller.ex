@@ -15,8 +15,6 @@ defmodule EvideoWeb.RolesController do
         }
       end)
 
-    Logger.info("roles #{inspect(roles)}")
-
     conn
     |> put_status(:ok)
     |> json(roles)
@@ -34,8 +32,6 @@ defmodule EvideoWeb.RolesController do
   end
 
   def create(conn, params) do
-    Logger.info("creating role with params #{inspect(params)}")
-
     {:ok, role} = Staffs.create_role(params)
 
     conn
@@ -47,8 +43,6 @@ defmodule EvideoWeb.RolesController do
   end
 
   def update(conn, %{"id" => id} = params) do
-    Logger.info("Updating role with params #{inspect(params)}")
-
     {:ok, role} = Staffs.update_role(id, params)
 
     conn
@@ -60,7 +54,6 @@ defmodule EvideoWeb.RolesController do
   end
 
   def delete(conn, %{"id" => id} = params) do
-    Logger.info("Delete role with params #{inspect(params)}")
     role = Staffs.delete_role(id)
 
     conn
