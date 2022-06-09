@@ -45,6 +45,12 @@ defmodule EvideoWeb.Router do
     put "/states/:id", StateController, :update
     delete "/states/:id", StateController, :delete
 
+    get "/cities", CityController, :get_all
+    get "/cities/:id", CityController, :get
+    post "/cities/", CityController, :create
+    put "/cities/:id", CityController, :update
+    delete "/cities/:id", CityController, :delete
+
     get "/enquiry", EnquiryController, :get_all
     post "/enquiry/", EnquiryController, :create
 
