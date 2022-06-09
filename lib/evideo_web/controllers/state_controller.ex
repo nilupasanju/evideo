@@ -60,8 +60,7 @@ defmodule EvideoWeb.StateController do
   end
 
   def get(conn, %{"id" => id} = params) do
-    {:ok, states} = Customers.get_state(id)
-    Logger.info("State #{inspect(params)}")
+    states = Customers.get_state(id)
 
     conn
     |> put_status(:ok)

@@ -9,7 +9,9 @@ defmodule EvideoWeb.LoginStaffController do
         %{
           id: login_staff.id,
           first_name: login_staff.first_name,
-          last_name: login_staff.last_name
+          last_name: login_staff.last_name,
+          username: login_staff.username,
+          loginpassword: login_staff.loginpassword
         }
       end)
 
@@ -19,6 +21,7 @@ defmodule EvideoWeb.LoginStaffController do
   end
 
   def create(conn, params) do
+
     {:ok, login_staff} = Staffs.create_login_staff(params)
 
     conn
@@ -28,7 +31,7 @@ defmodule EvideoWeb.LoginStaffController do
       first_name: login_staff.first_name,
       last_name: login_staff.last_name,
       username: login_staff.username,
-      password: login_staff.loginpassword
+      loginpassword: login_staff.loginpassword
     })
   end
 
@@ -42,7 +45,7 @@ defmodule EvideoWeb.LoginStaffController do
       first_name: login_staff.first_name,
       last_name: login_staff.last_name,
       username: login_staff.username,
-      password: login_staff.loginpassword
+      loginpassword: login_staff.loginpassword
     })
   end
 
@@ -63,7 +66,10 @@ defmodule EvideoWeb.LoginStaffController do
     |> put_status(:ok)
     |> json(%{
       id: login_staff.id,
-      first_name: login_staff.first_name
+      first_name: login_staff.first_name,
+      last_name: login_staff.last_name,
+      username: login_staff.username,
+      loginpassword: login_staff.loginpassword
     })
   end
 end
