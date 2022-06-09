@@ -1,9 +1,6 @@
 defmodule Evideo.Customers do
   alias Evideo.Repo
-  alias Evideo.Customers.Customer
-  alias Evideo.Customers.Country
-  alias Evideo.Customers.State
-  alias Evideo.Customers.Enquiry
+  alias Evideo.Customers.{Customer, Country, State, City, Enquiry}
 
   def create_customer(attrs) do
     %Customer{}
@@ -95,6 +92,37 @@ defmodule Evideo.Customers do
 
   def delete_state(id) do
     Repo.get!(State, id) |> Repo.delete!()
+  end
+
+  # Cities
+  def create_city(attrs) do
+    %City{}
+    |> City.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def get_city(id) do
+    Repo.get(City, id)
+  end
+
+  def update_city(id, attrs) do
+    case get_city(id) do
+      nil ->
+        {:error, :not_found}
+
+      city ->
+        city
+        |> City.changeset(attrs)
+        |> Repo.update()
+    end
+  end
+
+  def list_cities() do
+    Repo.all(City)
+  end
+
+  def delete_city(id) do
+    Repo.get!(City, id) |> Repo.delete!()
   end
 
   # Enquiry
