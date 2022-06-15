@@ -54,6 +54,9 @@ defmodule EvideoWeb.Router do
     get "/enquiry", EnquiryController, :get_all
     post "/enquiry/", EnquiryController, :create
 
+    get "/address_type", AddressTypeController, :get_all
+    post "/address_type/",AddressTypeController, :create
+
     get "/loginstaffs", LoginStaffController, :get_all
     get "/loginstaffs/:id", LoginStaffController, :get
     post "/loginstaffs/", LoginStaffController, :create

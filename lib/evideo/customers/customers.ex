@@ -1,6 +1,6 @@
 defmodule Evideo.Customers do
   alias Evideo.Repo
-  alias Evideo.Customers.{Customer, Country, State, City, Enquiry}
+  alias Evideo.Customers.{Customer, Country, State, City, Enquiry, AddressType}
 
   def create_customer(attrs) do
     %Customer{}
@@ -134,5 +134,16 @@ defmodule Evideo.Customers do
 
   def list_enquiry() do
     Repo.all(Enquiry)
+  end
+
+  # Addess_type
+  def create_address_type(attrs) do
+    %AddressType{}
+    |> AddressType.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def list_address_types() do
+    Repo.all(AddressType)
   end
 end
