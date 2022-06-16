@@ -52,6 +52,7 @@ defmodule EvideoWeb.LoginStaffController do
   def delete(conn, %{"id" => id} = params) do
     login_staff = Staffs.delete_login_staff(id)
 
+
     conn
     |> put_status(:ok)
     |> json(%{
