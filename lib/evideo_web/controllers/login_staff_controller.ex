@@ -1,5 +1,11 @@
 defmodule EvideoWeb.LoginStaffController do
   use EvideoWeb, :controller
+<<<<<<< Updated upstream
+=======
+
+  require Logger
+
+>>>>>>> Stashed changes
   alias Evideo.Staffs
 
   def get_all(conn, _params) do
@@ -36,6 +42,11 @@ defmodule EvideoWeb.LoginStaffController do
   end
 
   def update(conn, %{"id" => id} = params) do
+<<<<<<< Updated upstream
+=======
+    Logger.info("Updating staff with params #{inspect(params)}")
+
+>>>>>>> Stashed changes
     {:ok, login_staff} = Staffs.update_login_staff(id, params)
 
     conn
@@ -50,8 +61,13 @@ defmodule EvideoWeb.LoginStaffController do
   end
 
   def delete(conn, %{"id" => id} = params) do
+<<<<<<< Updated upstream
     login_staff = Staffs.delete_login_staff(id)
 
+=======
+    Logger.info("Delete staff with params #{inspect(params)}")
+    {:ok, login_staff} = Staffs.delete_login_staff(id)
+>>>>>>> Stashed changes
 
     conn
     |> put_status(:ok)

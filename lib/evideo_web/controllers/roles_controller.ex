@@ -6,6 +6,7 @@ defmodule EvideoWeb.RolesController do
   alias Evideo.Staffs
 
   def get_all(conn, _params) do
+<<<<<<< Updated upstream
     roles =
       Staffs.list_roles()
       |> Enum.map(fn role ->
@@ -14,6 +15,13 @@ defmodule EvideoWeb.RolesController do
           roles_description: role.roles_description
         }
       end)
+=======
+<<<<<<< Updated upstream
+    roles = LoginStaffs.list_roles()
+=======
+    roles = Staffs.list_roles()
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
     conn
     |> put_status(:ok)
@@ -32,6 +40,11 @@ defmodule EvideoWeb.RolesController do
   end
 
   def create(conn, params) do
+<<<<<<< Updated upstream
+=======
+    Logger.info("creating role with params #{inspect(params)}")
+
+>>>>>>> Stashed changes
     {:ok, role} = Staffs.create_role(params)
 
     conn
@@ -43,6 +56,11 @@ defmodule EvideoWeb.RolesController do
   end
 
   def update(conn, %{"id" => id} = params) do
+<<<<<<< Updated upstream
+=======
+    Logger.info("Updating role with params #{inspect(params)}")
+
+>>>>>>> Stashed changes
     {:ok, role} = Staffs.update_role(id, params)
 
     conn
@@ -54,7 +72,12 @@ defmodule EvideoWeb.RolesController do
   end
 
   def delete(conn, %{"id" => id} = params) do
+<<<<<<< Updated upstream
     role = Staffs.delete_role(id)
+=======
+    Logger.info("Delete role with params #{inspect(params)}")
+    {:ok, role} = Staffs.delete_role(id)
+>>>>>>> Stashed changes
 
     conn
     |> put_status(:ok)
